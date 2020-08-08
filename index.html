@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Coolors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+
+    <script crossorigin="anonymous" defer
+            integrity="sha512-YSdqvJoZr83hj76AIVdOcvLWYMWzy6sJyIMic2aQz5kh2bPTd9dzY3NtdeEAzPp/PhgZqr4aJObB3ym/vsItMg=="
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
+
+    <script defer src="app.js"></script>
+</head>
+<body>
+<div class="colors">
+    <div class="color">
+        <h2>Hex</h2>
+        <div class="controls">
+            <button class="adjust"><i class="fas fa-sliders-h"></i></button>
+            <button class="lock"><i class="fas fa-lock-open"></i></button>
+        </div>
+        <div class="sliders">
+            <button class="close-adjustment">X</button>
+            <span>Hue</span>
+            <input class="hue-input" data-hue="0" max="360" min="0" name="hue" step="1" type="range"/>
+            <span>Brightness</span>
+            <input class="bright-input" data-bright="0" max="1" min="0" name="brightness" step="0.01" type="range">
+            <span>Saturation</span>
+            <input class="sat-input" data-sat="0" max="1" min="0" name="saturation" step="0.01" type="range">
+        </div>
+    </div>
+    <div class="color">
+        <h2>Hex</h2>
+        <div class="controls">
+            <button class="adjust"><i class="fas fa-sliders-h"></i></button>
+            <button class="lock"><i class="fas fa-lock-open"></i></button>
+        </div>
+        <div class="sliders">
+            <button class="close-adjustment">X</button>
+            <span>Hue</span>
+            <input class="hue-input" data-hue="1" max="360" min="0" name="hue" step="1" type="range"/>
+            <span>Brightness</span>
+            <input class="bright-input" data-bright="1" max="1" min="0" name="brightness" step="0.01" type="range">
+            <span>Saturation</span>
+            <input class="sat-input" data-sat="1" max="1" min="0" name="saturation" step="0.01" type="range">
+        </div>
+    </div>
+    <div class="color">
+        <h2>Hex</h2>
+        <div class="controls">
+            <button class="adjust"><i class="fas fa-sliders-h"></i></button>
+            <button class="lock"><i class="fas fa-lock-open"></i></button>
+        </div>
+        <div class="sliders">
+            <button class="close-adjustment">X</button>
+            <span>Hue</span>
+            <input class="hue-input" data-hue="2" max="360" min="0" name="hue" step="1" type="range"/>
+            <span>Brightness</span>
+            <input class="bright-input" data-bright="2" max="1" min="0" name="brightness" step="0.01" type="range">
+            <span>Saturation</span>
+            <input class="sat-input" data-sat="2" max="1" min="0" name="saturation" step="0.01" type="range">
+        </div>
+    </div>
+    <div class="color">
+        <h2>Hex</h2>
+        <div class="controls">
+            <button class="adjust"><i class="fas fa-sliders-h"></i></button>
+            <button class="lock"><i class="fas fa-lock-open"></i></button>
+        </div>
+        <div class="sliders">
+            <button class="close-adjustment">X</button>
+            <span>Hue</span>
+            <input class="hue-input" data-hue="3" max="360" min="0" name="hue" step="1" type="range"/>
+            <span>Brightness</span>
+            <input class="bright-input" data-bright="3" max="1" min="0" name="brightness" step="0.01" type="range">
+            <span>Saturation</span>
+            <input class="sat-input" data-sat="3" max="1" min="0" name="saturation" step="0.01" type="range">
+        </div>
+    </div>
+</div>
+<div class="panel">
+    <div class="library-panel">
+        <button class="library"><i class="fas fa-book-open"></i></button>
+        <p>Library</p>
+    </div>
+    <div class="generate-panel">
+        <button class="generate"><i class="fas fa-sync"></i></button>
+        <p>Refresh</p>
+    </div>
+    <div class="save-panel">
+        <button class="save"><i class="fas fa-save"></i></button>
+        <p>Save</p>
+    </div>
+</div>
+<div class="copy-container">
+    <div class="copy-popup">
+        <h3>Copied to clipboard</h3>
+        <h4>&#128077;</h4>
+    </div>
+</div>
+<div class="save-container">
+    <div class="save-popup">
+        <button class="close-save">X</button>
+        <h4>Give a name to your palette</h4>
+        <input class="save-name" maxlength="35" type="text">
+        <button class="submit-save" type="submit">Save</button>
+    </div>
+</div>
+<div class="library-container">
+    <div class="library-popup">
+        <button class="close-library">X</button>
+        <h4>Pick your palette</h4>
+    </div>
+</div>
+</body>
+</html>
