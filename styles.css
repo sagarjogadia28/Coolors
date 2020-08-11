@@ -46,13 +46,14 @@ svg, path, i {
     padding: 1rem;
     width: 80%;
     bottom: 0;
-    pointer-events: none;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
-    opacity: 0;
-
-    transform: translateY(100px);
     transition: all 0.5s ease-in-out;
+    background: white;
+    color: black;
+    /*pointer-events: none;*/
+    /*opacity: 0;*/
+    /*transform: translateY(100px);*/
 }
 
 .sliders.active {
@@ -117,4 +118,32 @@ svg, path, i {
     background: none;
     cursor: pointer;
     margin: 2rem 0;
+}
+
+/*Slider Stuff*/
+input[type='range'] {
+    margin: 1rem 0;
+    -webkit-appearance: none;
+    width: 100%;
+    position: relative;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+
+input[type='range']::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
 }
