@@ -34,7 +34,7 @@ function colorizeSliders(color, hueDiv, brightnessDiv, saturationDiv) {
 
     //Change Brightness
     const midBrightness = color.set('hsl.l', 0.5)
-    const brightnessScale = chroma.scale(['white', midBrightness, 'black'])
+    const brightnessScale = chroma.scale(['black', midBrightness, 'white'])
     brightnessDiv.style.backgroundImage = `linear-gradient( to right, ${brightnessScale(0)}, ${brightnessScale(0.5)}, ${brightnessScale(1)})`
 
     //Change  Hue
@@ -68,6 +68,29 @@ function randomColors() {
         const brightness = sliders[1]
         const saturation = sliders[2]
         colorizeSliders(chroma(randomColor), hue, brightness, saturation)
+
+        initializeSliderDots(colorDiv)
+    })
+}
+
+function initializeSliderDots(colorDiv) {
+    const sliders = colorDiv.querySelectorAll('.sliders input')
+    sliders.forEach(slider => {
+        const index = slider.getAttribute('data-hue') ||
+            slider.getAttribute('data-sat') ||
+            slider.getAttribute('data-bright')
+        const color = initialColors[index]
+
+        if (slider.name === 'hue') {
+            const hue = chroma(color).get('hsl.h')
+            slider.value = Math.floor(hue)
+        } else if (slider.name === 'saturation') {
+            const saturation = chroma(color).get('hsl.s')
+            slider.value = Math.floor(saturation * 100) / 100
+        } else if (slider.name === 'brightness') {
+            const light = chroma(color).get('hsl.l')
+            slider.value = Math.floor(light * 100) / 100
+        }
     })
 }
 
