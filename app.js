@@ -3,6 +3,10 @@ const colorDivs = document.querySelectorAll(".color")
 const generateBtn = document.querySelector(".generate")
 const sliders = document.querySelectorAll('input[type="range"]')
 const currentHexes = document.querySelectorAll(".color h2")
+const popup = document.querySelector('.copy-container')
+const adjustButtons = document.querySelectorAll('.adjust')
+const closeAdjustments = document.querySelectorAll('.close-adjustment')
+const sliderContainers = document.querySelectorAll('.sliders')
 let initialColors
 
 //Event Listeners
@@ -13,6 +17,30 @@ sliders.forEach(slider => {
 colorDivs.forEach((div, index) => {
     div.addEventListener('change', () => {
         updateColorText(index)
+    })
+})
+
+currentHexes.forEach(hex => {
+    hex.addEventListener('click', () => {
+        copyToClipboard(hex)
+    })
+})
+
+popup.addEventListener('transitionend', () => {
+    const popupBox = popup.children[0]
+    popupBox.classList.remove('active')
+    popup.classList.remove('active')
+})
+
+adjustButtons.forEach((adjustButton, index) => {
+    adjustButton.addEventListener('click', () => {
+        openAdjustmentPanel(index)
+    })
+})
+
+closeAdjustments.forEach((closeAdjustment, index) => {
+    closeAdjustment.addEventListener('click', () => {
+        closeAdjustmentPanel(index)
     })
 })
 
@@ -113,10 +141,15 @@ function hslControls(event) {
     const hue = sliders[0]
     const brightness = sliders[1]
     const saturation = sliders[2]
-    colorDivs[index].style.backgroundColor = chroma(color)
+
+    let newColor = chroma(color)
         .set('hsl.h', hue.value)
         .set('hsl.s', saturation.value)
         .set('hsl.l', brightness.value)
+    colorDivs[index].style.backgroundColor = newColor
+
+    //Colorize the sliders
+    colorizeSliders(newColor, hue, brightness, saturation)
 }
 
 function updateColorText(index) {
@@ -129,6 +162,28 @@ function updateColorText(index) {
     for (icon of icons) {
         checkTextContrast(icon, bgColor)
     }
+}
+
+function copyToClipboard(hex) {
+    const element = document.createElement('textarea')
+    element.value = hex.innerText
+    document.body.appendChild(element)
+    element.select()
+    document.execCommand('copy')
+    document.body.removeChild(element)
+
+    //Popup animation
+    const popupBox = popup.children[0]
+    popup.classList.toggle('active')
+    popupBox.classList.toggle('active')
+}
+
+function openAdjustmentPanel(index) {
+    sliderContainers[index].classList.toggle('active')
+}
+
+function closeAdjustmentPanel(index) {
+    sliderContainers[index].classList.remove('active')
 }
 
 randomColors()
