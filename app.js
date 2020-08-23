@@ -9,6 +9,7 @@ const lockButtons = document.querySelectorAll('.lock')
 const closeAdjustments = document.querySelectorAll('.close-adjustment')
 const sliderContainers = document.querySelectorAll('.sliders')
 let initialColors
+let savedPalettes = []
 
 //Event Listeners
 sliders.forEach(slider => {
@@ -208,6 +209,59 @@ function toggleLock(index) {
     colorDivs[index].classList.toggle('locked')
     lockButtons[index].children[0].classList.toggle('fa-lock-open')
     lockButtons[index].children[0].classList.toggle('fa-lock')
+}
+
+//Save to palette and local storage
+const saveBtn = document.querySelector('.save')
+const submitSave = document.querySelector('.submit-save')
+const closeSave = document.querySelector('.close-save')
+const saveContainer = document.querySelector('.save-container')
+const saveInput = document.querySelector('.save-container input')
+
+//Event listener
+saveBtn.addEventListener('click', openPalette)
+closeSave.addEventListener('click', closePalette)
+submitSave.addEventListener('click', savePalette)
+
+function openPalette() {
+    const popup = saveContainer.children[0]
+    saveContainer.classList.add('active')
+    popup.classList.add('active')
+}
+
+function closePalette() {
+    const popup = saveContainer.children[0]
+    saveContainer.classList.remove('active')
+    popup.classList.add('remove')
+}
+
+function savePalette() {
+    closePalette()
+    const name = saveInput.value
+    const colors = []
+    currentHexes.forEach(hex => {
+        colors.push(hex.innerText)
+    })
+
+    //Create an object of the palette
+    let paletteNr = savedPalettes.length
+    const paletteObject = {name, colors, nr: paletteNr}
+    savedPalettes.push(paletteObject)
+
+    //Store the palette to local storage
+    saveToLocal(paletteObject)
+    saveInput.value = ''
+}
+
+function saveToLocal(paletteObject) {
+    let localPalettes;
+    if (localStorage.getItem('palettes') === null)
+        localPalettes = []
+    else
+        localPalettes = JSON.parse(localStorage.getItem('palettes'))
+
+    localPalettes.push(paletteObject)
+    localStorage.setItem('palettes', JSON.stringify(localPalettes))
 }
 
 randomColors()
