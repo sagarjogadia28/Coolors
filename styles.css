@@ -251,5 +251,12 @@ input[type='range']::-moz-range-thumb {
     font-size: 1.2rem;
     background: rgb(41, 41, 41);
     color: white;
+}
 
+@media only screen and (max-width: 600px) {
+    .colors {
+        height: 2000px;
+        display: flex;
+        flex-direction: column;
+    }
 }
